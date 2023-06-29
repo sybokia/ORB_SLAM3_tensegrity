@@ -146,6 +146,9 @@ int main(int argc, char **argv)
 
   ros::spin();
 
+  SLAM.SaveTrajectoryEuRoC("CameraTrajectory.txt");
+  SLAM.SaveKeyFrameTrajectoryEuRoC("KeyFrameTrajectory.txt");
+
   return 0;
 }
 
