@@ -4,39 +4,34 @@
 The following are instructions for experiments on ORB-SLAM. The related repository is under the `ORB_SLAM3` folder. we have tested with **Ubuntu 20.04**. 
 ### Exp 0: ORB-SLAM3 Setup and Reproduction on TUM-VI
 1. Build ROS by following the [installation manual](https://wiki.ros.org/noetic/Installation/Ubuntu).  
-2. Follow 'README.md' under 'ORB_SLAM3' to build ORB-SLAM3. In the fork we provide, we ahve fixed build issues related to OpenCV verison confilcts, errors in 'build_ros.sh', etc. and have tested with **Ubuntu 20.04**. In general, first build the pre-requisites (Pangolin, OpenCV, and Eigen3). Then, under the 'ORB_SLAM3' directory, execute
-
+2. Follow `README.md` under `ORB_SLAM3` to build ORB-SLAM3. In the fork we provide, we have fixed build issues related to OpenCV verison confilcts, errors in `build_ros.sh`, etc. and have tested with **Ubuntu 20.04**. In general, first build the pre-requisites (Pangolin, OpenCV, and Eigen3). Then, under the `ORB_SLAM3` directory, execute
 ``` shell
 chmod +x build.sh
+./build.sh
 ```
-
-3. The above builds ORB_SLAM3. To build the ROS nodes, execute the following (make sure to also add path to ROS_PACKAGE_PATH, see ORB_SLAM3's 'README.md' for details).
-
-''' shell
+3. The above builds ORB_SLAM3. To build the ROS nodes, execute the following (make sure to also add path to ROS_PACKAGE_PATH, see ORB_SLAM3's `README.md` for details).
+``` shell
 chmod +x build_ros.sh
 ./build_ros.sh
-'''
-
-4. Download '.bag' of the corrdior sequences from the [TUM-VI dataset](https://cvg.cit.tum.de/data/datasets/visual-inertial-dataset).
+```
+4. Download `.bag` of the corrdior sequences from [TUM-VI dataset](https://cvg.cit.tum.de/data/datasets/visual-inertial-dataset).
 5. Start roscore
-   
-''' shell
+``` shell
 roscore
-'''
-
+```
 6. For monocular mode, in a new terminal, execute
-   
-''' shell
+``` shell
 rosrun ORB_SLAM3 Mono PATH_TO_ORB_SLAM3/Vocabulary/ORBvoc.txt PATH_TO_ORB_SLAM3/Examples_old/Monocular/TUM-VI.yaml
-'''
-
+```
 7. For mono-inertial mode, in a new terminal, execute
-
-''' shell
+``` shell
 rosrun ORB_SLAM3 RGBD PATH_TO_ORB_SLAM3/Vocabulary/ORBvoc.txt PATH_TO_ORB_SLAM3/Examples_old/Monocular-Inertial/TUM-VI.yaml
-'''
-
-8. For any mode, after closing the node, the result 'KeyFrameTrajectory.txt' in TUM format is save at where the command was executed. The [evo](https://github.com/MichaelGrupp/evo) toolkit provides convinent ways to evaluate the results.
+```
+8. In a new terminal, play the rosbag with remapped topic names
+``` shell
+rosbag play PATH_TO_BAG.bag /cam0/image_raw:=/camera/image_raw
+```
+9. For any mode, when finished, the result `KeyFrameTrajectory.txt` in TUM format is save at where the command was executed. The [evo](https://github.com/MichaelGrupp/evo) toolkit provides convenient ways to evaluate the results.
 
 ### Exp 1: Go-SLAM Image-level Perturbation (Static Perturbation) Evaluation on Replica [1108 Update]
 - Nested script:
