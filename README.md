@@ -1,14 +1,14 @@
 # ORB-SLAM3
 
 ## Exp on ORB-SLAM3
-The following are instructions for experiments on ORB-SLAM. The related repository is under the 'ORB_SLAM3' folder. we have tested with **Ubuntu 20.04**. 
+The following are instructions for experiments on ORB-SLAM. The related repository is under the `ORB_SLAM3` folder. we have tested with **Ubuntu 20.04**. 
 ### Exp 0: ORB-SLAM3 Setup and Reproduction on TUM-VI
 1. Build ROS by following the [installation manual](https://wiki.ros.org/noetic/Installation/Ubuntu).  
 2. Follow 'README.md' under 'ORB_SLAM3' to build ORB-SLAM3. In the fork we provide, we ahve fixed build issues related to OpenCV verison confilcts, errors in 'build_ros.sh', etc. and have tested with **Ubuntu 20.04**. In general, first build the pre-requisites (Pangolin, OpenCV, and Eigen3). Then, under the 'ORB_SLAM3' directory, execute
 
-''' shell
+``` shell
 chmod +x build.sh
-'''
+```
 
 3. The above builds ORB_SLAM3. To build the ROS nodes, execute the following (make sure to also add path to ROS_PACKAGE_PATH, see ORB_SLAM3's 'README.md' for details).
 
